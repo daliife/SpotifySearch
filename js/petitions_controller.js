@@ -10,6 +10,8 @@ var constants = Object.freeze({
     num_artists: 5
 });
 
+//TODO: Implement error control info
+
 function getSongsObject(petitionName){	
 
 	spotifyApi.searchTracks(petitionName, {limit: constants.num_songs}).then(function(data) {    
@@ -61,7 +63,7 @@ function getAlbumsObject(petitionName){
 }
 
 function getArtistsObject(petitionName){	
-	
+
 	var source = $("#artists-template").html();
 	var template = Handlebars.compile(source);
 

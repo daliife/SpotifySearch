@@ -10,7 +10,22 @@ $(document).ready(function(){
 
 	$( "#main-search-button" ).click(function() {
 	  searchPetition("main-form");
-	});		
+	});	
+
+    $("#main-form").keydown(function (event) {
+    	console.log("hahah");
+    	if (event.which === 13) {
+    		event.preventDefault();
+    		searchPetition("main-form");
+		}
+	});	
+ 
+    $("#navbar-form").keydown(function (e) {
+    	if (e.keyCode === 13) {
+    		event.preventDefault();
+    		searchPetition("navbar-form");
+		}    		
+	});			
 
 });
 
@@ -44,4 +59,13 @@ function clearResults(){
 	$('#artists-container').empty();
 	showMainSearch();
 }
+
+function checkSubmit() {
+    if ( document.getElementById("addon2").value == "" ){
+        return 0;
+    }else{
+        return 1;
+    }
+}
+
 

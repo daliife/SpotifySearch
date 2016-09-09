@@ -8,6 +8,7 @@ p{
 
 .navbar-inverse{
   border: 0px!important;
+  background-color: rgba(34,34,34,1);
 }
 
 .green-spotify{
@@ -27,13 +28,14 @@ p{
   background-color: #e5e5e5;
 }
 
+.filler, .add-margin{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 #result-search{
   padding-top: 70px!important;
 }
-
-
-
-
 
 ::-webkit-input-placeholder {
    color: #82B901!important;
