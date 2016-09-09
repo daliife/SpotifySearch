@@ -33,9 +33,33 @@ p{
   margin-bottom: 20px;
 }
 
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+}
+
+.rounded-borders{
+  border-radius: 5px;
+}
+
 #result-search{
   padding-top: 70px!important;
 }
+
+.progress{
+  margin-bottom: 0px!important;
+}
+
+.jumbotron {
+  background-color: transparent!important;  
+}
+
+
+
+
+
 
 ::-webkit-input-placeholder {
    color: #82B901!important;
@@ -51,15 +75,6 @@ p{
 
 :-ms-input-placeholder {  
    color: #82B901!important;  
-}
-
-.progress{
-  margin-bottom: 0px!important;
-}
-
-
-.jumbotron {
-  background-color: transparent!important;  
 }
 
 .fullscreen {
