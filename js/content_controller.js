@@ -1,31 +1,47 @@
 //content_controller.js
 
-searchPetition();
+$(document).ready(function(){
 
-function searchPetition(){
+	showMainSearch();
 
-	$(document).ready(function(){
-		
-		/*var songData = {customer[
-			{ 	song: "hola",
-				album: "hola",
-				album_image: "hola",
-				artist: "hola",
-				audio_preview: "hola"
-			}			
-		]};
-		var data = new Array();
-		data = getSongsObject("ac");
-		console.log(data);
+	$( "#navbar-search-button" ).click(function() {
+	  searchPetition("navbar-form");
+	});	
 
-		var source = $('#song-template').html();
-		var template = Handlebars.compile(source);
-		console.log(template(data));
+	$( "#main-search-button" ).click(function() {
+	  searchPetition("main-form");
+	});		
 
-		$('#songs-container').append(template(data));*/
+});
 
-
+function searchPetition(formID){
 	
-	});
+	var petition = document.getElementById(formID).value;
+	$(".filler").html("<small>Results for:</small> " + petition);
+	console.log("Petition: " + petition);
+
+	getSongsObject(petition);
+	getAlbumsObject(petition);
+	getArtistsObject(petition);
+
+	showResults();
+
+}
+
+function showResults(){
+	$('#main-search').hide();
+	$('#result-search').show();	
+}
+
+function showMainSearch(){
+	$('#main-search').show();
+	$('#result-search').hide();	
+}
+
+function clearResults(){
+	$('#songs-container').empty();
+	$('#albums-container').empty();
+	$('#artists-container').empty();
+	showMainSearch();
 }
 

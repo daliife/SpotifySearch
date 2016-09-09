@@ -1,22 +1,23 @@
 // petitioncontroller.js
 
+//Instance of SpotifyWepApi (more info: https://github.com/JMPerez/spotify-web-api-js)
 var spotifyApi = new SpotifyWebApi();
+
+//Results of search parameters
 var constants = Object.freeze({
     num_songs: 8,
     num_albums: 6,
     num_artists: 5
 });
 
-getSongsObject("ac");
-getAlbumsObject("ac");
-getArtistsObject("ac");
-
 function getSongsObject(petitionName){	
 
 	spotifyApi.searchTracks(petitionName, {limit: constants.num_songs}).then(function(data) {    
 
 		var source = $("#song-template").html();
-		var template = Handlebars.compile(source);		
+		var template = Handlebars.compile(source);
+
+		$('#songs-container').empty();				
 
 	    for (var i = 0; i < constants.num_songs; i++) {
 
@@ -37,14 +38,14 @@ function getSongsObject(petitionName){
 }
 
 function getAlbumsObject(petitionName){	
+
+	var source = $("#albums-template").html();
+	var template = Handlebars.compile(source);	
+
+	$('#albums-container').empty();
 		
-	var albumsObject = new Array();
-
 	spotifyApi.searchAlbums(petitionName, {limit: constants.num_albums}).then(function(data) {        
-		console.log(data);
-		var source = $("#albums-template").html();
-		var template = Handlebars.compile(source);	
-
+		
 	    for (var i = 0; i < constants.num_albums; i++) {
 	    	var albumInfo = { album_image: data.albums.items[i].images[1].url,
 	    				name: data.albums.items[i].name, 
@@ -60,11 +61,13 @@ function getAlbumsObject(petitionName){
 }
 
 function getArtistsObject(petitionName){	
+	
+	var source = $("#artists-template").html();
+	var template = Handlebars.compile(source);
+
+	$('#artists-container').empty();
 
 	spotifyApi.searchArtists(petitionName, {limit: constants.num_artists}).then(function(data) {    
-
-		var source = $("#artists-template").html();
-		var template = Handlebars.compile(source);
 
 	    for (var i = 0; i < constants.num_artists; i++) {
     		var artistInfo = { name: data.artists.items[i].name,
@@ -74,7 +77,7 @@ function getArtistsObject(petitionName){
     				artist_image: data.artists.items[i].images[2].url,
     				genres: data.artists.items[i].genres
 			};	
-			
+
 			var html = template(artistInfo);
 			$('#artists-container').append(html);
 	    }   	

@@ -22,16 +22,16 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#"><img alt="Brand" src="spotify_icon.png" height="20" width="20"></a>
-					<a class="navbar-brand green-spotify" href="#">Spotify Search</a>
+					<a class="navbar-brand" href="index.html"><img alt="Brand" src="spotify_icon.png" height="20" width="20"></a>
+					<a class="navbar-brand green-spotify" href="index.html">Spotify Search</a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<form class="navbar-form navbar-left">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search anything...">
+							<input type="text" id="navbar-form" class="form-control" placeholder="Search anything...">
 						</div>
-						<button type="submit" id="search-button-navbar"class="btn green-spotify-background"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+						<button type="button" id="navbar-search-button" class="btn green-spotify-background"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#" class="green-spotify"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Discover</a></li>
@@ -44,25 +44,33 @@
 			<!-- /.container-fluid -->
 		</nav>
 		<div id="main-wrapper">
-			<!--<div id="main-search" class="container-fluid">
+			<div id="main-search" class="container-fluid">
 				<div class="row flex-items-xs-middle fullscreen">
 					<div class="col-xs-8 col-xs-offset-2 jumbotron">
 						<h1 class="green-spotify">Spotify search</h1>
 						<form>
 							<div class="form-group">
 								<div class="col-sm-10">
-									<input type="text" class="form-control input-lg" id="exampleInputName2" placeholder="Search any song, album or artist...">
+									<input type="text" class="form-control input-lg" id="main-form" placeholder="Search any song, album or artist...">
 								</div>
 								<div class="col-sm-2">
-									<button type="submit" class="btn btn-lg green-spotify-background"><span id="search-button-main" class="glyphicon glyphicon-search" aria-hidden="true"></span>  Search</button>									
+									<button type="button" id="main-search-button" class="btn btn-lg green-spotify-background"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>  Search</button>
 								</div>
 							</div>		    			
 						</form>
 					</div>
 				</div>
-			</div>-->
+			</div>
 			<div id="result-search" class="container-fluid">
 				<div class="row">
+					<div class="col-xs-12 panel panel-default">
+						<div class="col-xs-8">
+							<h2 class="filler">gfdgfgf</h2>
+						</div>
+						<div class="col-xs-4 text-right">
+							<a href="" onclick="clearResults();" class="btn btn-default btn-lg green-spotify-background" role="button"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Close</a>
+						</div>
+					</div>
 					<div class="col-xs-4">
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -149,12 +157,12 @@
 			</div>
 		</script>		
 
-
-
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
+
 		<!-- Handlebars -->
 		<script type="text/javascript" src="js/handlebars-v4.0.5.js"></script>
 
