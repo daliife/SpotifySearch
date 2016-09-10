@@ -12,8 +12,8 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/personalized.css" rel="stylesheet">
 
-		<link href="css/animate.css" rel="stylesheet">
-	
+		<link href="css/toastr.min.css" rel="stylesheet">
+
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -50,19 +50,20 @@
 		<div id="main-wrapper">	
 			<div id="main-search" class="container-fluid">
 				<div class="row flex-items-xs-middle fullscreen">
-					<div class="col-xs-8 col-xs-offset-2 jumbotron">
+					<div class="col-xs-12 col-md-8 col-md-offset-2 jumbotron">
 						<h1 class="green-spotify">Spotify search</h1>
 						<form>
 							<div class="form-group">
-								<div class="col-sm-10">
-									<input type="text" class="form-control input-lg" id="main-form" placeholder="Search any song, album or artist...">
+								<div class="col-sm-12 col-md-8">
+									<input type="text" class="form-control input-lg ellipsis" id="main-form" placeholder="Search any song, album or artist...">
 								</div>
-								<div class="col-sm-2">
+								<div class="col-sm-12 col-md-4">
 									<button type="button" id="main-search-button" class="btn btn-lg green-spotify-background"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>  Search</button>
 								</div>
 							</div>		    			
 						</form>
-					</div>					
+					</div>		
+					<div id="alert" class="hide" style="margin-bottom:35px!important;"></div>			
 				</div>
 			</div>
 			<div id="result-search" class="container-fluid">
@@ -75,7 +76,7 @@
 							<a href="" onclick="clearResults();" class="btn btn-default green-spotify-background pull-right add-margin" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Clear search</a>
 						</div>
 					</div>
-					<div class="col-xs-4">
+					<div class="col-sm-12 col-md-4">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Songs</h3>
@@ -84,7 +85,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-8">
+					<div class="col-sm-12 col-md-8">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Albums</h3>
@@ -95,13 +96,12 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-8">
+					<div class="col-sm-12 col-md-8">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Artists</h3>
 							</div>
-							<div id="artists-container" class="panel-body">
-								
+							<div id="artists-container" class="panel-body">	
 							</div>
 						</div>
 					</div>
@@ -169,6 +169,8 @@
 
 		<!-- Handlebars -->
 		<script type="text/javascript" src="js/handlebars-v4.0.5.js"></script>
+
+		<script type="text/javascript" src="js/toastr.min.js"></script>
 
 		<!-- Personalized Javascript -->
 		<script type="text/javascript" src="js/spotify-web-api-js.js"></script>

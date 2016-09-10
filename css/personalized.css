@@ -17,6 +17,7 @@ p{
 
 .green-spotify-background, .progress-bar{
   background-color: #82B901!important;
+  outline: 0px!important;
 }
 
 .divider-manual {
@@ -55,11 +56,6 @@ p{
 .jumbotron {
   background-color: transparent!important;  
 }
-
-
-
-
-
 
 ::-webkit-input-placeholder {
    color: #82B901!important;

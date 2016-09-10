@@ -10,29 +10,40 @@ var constants = Object.freeze({
     num_artists: 4
 });
 
-//TODO: Implement error control info
-
+//TODO: Control undefined/error variables of data
 function getSongsObject(petitionName){	
+
+	var source = $("#song-template").html();
+	var template = Handlebars.compile(source);
+
+	$('#songs-container').empty();
 
 	spotifyApi.searchTracks(petitionName, {limit: constants.num_songs}).then(function(data) {    
 
-		var source = $("#song-template").html();
-		var template = Handlebars.compile(source);
+		if (data.tracks.total > 0) {
+			
+		    for (var i = 0; i < constants.num_songs; i++) {
 
-		$('#songs-container').empty();				
+		    	var songInfo = { song: data.tracks.items[i].name,
+		    				album: data.tracks.items[i].album.name, 
+		    				album_image: data.tracks.items[i].album.images[1].url,
+		    				artist: data.tracks.items[i].artists[0].name,
+		    				audio_preview: data.tracks.items[i].preview_url
+				};
 
-	    for (var i = 0; i < constants.num_songs; i++) {
+				var html = template(songInfo);
 
-	    	var songInfo = { song: data.tracks.items[i].name,
-	    				album: data.tracks.items[i].album.name, 
-	    				album_image: data.tracks.items[i].album.images[1].url,
-	    				artist: data.tracks.items[i].artists[0].name,
-	    				audio_preview: data.tracks.items[i].preview_url
-			};
+				$('#songs-container').append(html);	
 
-			var html = template(songInfo);
-			$('#songs-container').append(html);	    	
-	    }	
+		    }	
+
+		}else{
+
+			var html_error = '<div class="media"><div class="media-body"><h4 class="media-heading text-center"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> No songs found.</h4>	</div></div>';
+			
+			$('#songs-container').append(html_error);
+
+		};
 
 	}, function(err) {
 		console.error(err);
@@ -45,21 +56,29 @@ function getAlbumsObject(petitionName){
 	var template = Handlebars.compile(source);	
 
 	$('#albums-container').empty();
-		
+	
 	spotifyApi.searchAlbums(petitionName, {limit: constants.num_albums}).then(function(data) {        
 		
-	    for (var i = 0; i < constants.num_albums; i++) {
-	    	var albumInfo = { album_image: data.albums.items[i].images[1].url,
-	    				name: data.albums.items[i].name, 
-	    				spotify_link: data.albums.items[i].external_urls.spotify
-			};			
-			
-			var html = template(albumInfo);
-			$('#albums-container').append(html);	    	
-		}   	
+		if (data.albums.total > 0) {
+
+		    for (var i = 0; i < constants.num_albums; i++) {
+		    	var albumInfo = { album_image: data.albums.items[i].images[1].url,
+		    				name: data.albums.items[i].name, 
+		    				spotify_link: data.albums.items[i].external_urls.spotify
+				};			
+				
+				var html = template(albumInfo);
+				$('#albums-container').append(html);	    	
+			}
+		}else{
+			var html_error = '<div class="media"><div class="media-body"><h4 class="media-heading text-center"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> No albums found.</h4>	</div></div>';
+			$('#albums-container').append(html_error);
+		};  
+
 	}, function(err) {
 		console.error(err);
 	});
+
 }
 
 function getArtistsObject(petitionName){	
@@ -71,23 +90,33 @@ function getArtistsObject(petitionName){
 
 	spotifyApi.searchArtists(petitionName, {limit: constants.num_artists}).then(function(data) {    
 
-	    for (var i = 0; i < constants.num_artists; i++) {
-    		var artistInfo = { name: data.artists.items[i].name,
-    				popularity: data.artists.items[i].popularity, 
-    				num_followers: data.artists.items[i].followers.total,
-    				spotify_link: data.artists.items[i].external_urls.spotify,
-    				artist_image: data.artists.items[i].images[2].url,
-    				genres: data.artists.items[i].genres
-			};	
+		if (data.artists.total > 0) {
 
-			var html = template(artistInfo);
-			$('#artists-container').append(html);
-	    }   	
+		    for (var i = 0; i < constants.num_artists; i++) {
+	    		var artistInfo = { name: data.artists.items[i].name,
+	    				popularity: data.artists.items[i].popularity, 
+	    				num_followers: data.artists.items[i].followers.total,
+	    				spotify_link: data.artists.items[i].external_urls.spotify,
+	    				artist_image: data.artists.items[i].images[2].url,
+	    				genres: data.artists.items[i].genres
+				};	
+
+				var html = template(artistInfo);
+				$('#artists-container').append(html);
+		    }
+
+		}else{
+			var html_error = '<div class="media"><div class="media-body"><h4 class="media-heading text-center"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> No artists found.</h4>	</div></div>';
+			$('#artists-container').append(html_error);
+		}; 	       	
+
 	}, function(err) {
 		console.error(err);
 	});
 }
 
+
+//TODO: Look for alternatives...
 function getSpotifyTopHundredTracks(){
 
 	spotifyApi.searchPlaylists('Top 100 tracks currently on Spotify', {limit:2}).then(function(data) {    

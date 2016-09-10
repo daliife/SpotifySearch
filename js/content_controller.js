@@ -4,12 +4,39 @@ $(document).ready(function(){
 
 	showMainSearch();
 
+	toastr.options = {
+	  "closeButton": true,
+	  "debug": false,
+	  "newestOnTop": false,
+	  "progressBar": false,
+	  "positionClass": "toast-bottom-right",
+	  "preventDuplicates": true,
+	  "onclick": null,
+	  "showDuration": "300",
+	  "hideDuration": "1000",
+	  "timeOut": "3000",
+	  "extendedTimeOut": "1000",
+	  "showEasing": "swing",
+	  "hideEasing": "linear",
+	  "showMethod": "fadeIn",
+	  "hideMethod": "fadeOut"
+	}	
+
+
 	$( "#navbar-search-button" ).click(function() {
-		if(checkSubmitNavbar())searchPetition("navbar-form");
+		if(checkSubmitNavbar()){
+			searchPetition("navbar-form");
+		}else {
+			toastr.warning('Insert any word');
+		}
 	});	
 
 	$( "#main-search-button" ).click(function() {
-		if(checkSubmitMain())searchPetition("main-form");
+		if(checkSubmitMain()){
+			searchPetition("main-form");
+		}else {
+			toastr.warning('Insert any word');
+		}
 	});	
 
     $("#main-form").keydown(function (event) {
@@ -29,7 +56,6 @@ $(document).ready(function(){
 });
 
 function searchPetition(formID){
-	
 	var petition = document.getElementById(formID).value;
 	$(".filler").html("<small>Results for:</small> " + petition);
 
@@ -38,7 +64,6 @@ function searchPetition(formID){
 	getArtistsObject(petition);
 
 	showResults();
-
 }
 
 function showResults(){
