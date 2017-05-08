@@ -6,7 +6,7 @@ var spotifyApi = new SpotifyWebApi();
 //Results of search parameters
 var constants = Object.freeze({
     num_songs: 8,
-    num_albums: 4,
+    num_albums: 6,
     num_artists: 4
 });
 
@@ -24,11 +24,14 @@ function getSongsObject(petitionName){
 			
 		    for (var i = 0; i < constants.num_songs; i++) {
 
+		    	var is_last_song = (i == constants.num_songs - 1)? false : true; 
+
 		    	var songInfo = { song: data.tracks.items[i].name,
 		    				album: data.tracks.items[i].album.name, 
 		    				album_image: data.tracks.items[i].album.images[1].url,
 		    				artist: data.tracks.items[i].artists[0].name,
-		    				audio_preview: data.tracks.items[i].preview_url
+		    				audio_preview: data.tracks.items[i].preview_url,
+		    				last_song: is_last_song
 				};
 
 				var html = template(songInfo);
@@ -93,12 +96,17 @@ function getArtistsObject(petitionName){
 		if (data.artists.total > 0) {
 
 		    for (var i = 0; i < constants.num_artists; i++) {
+	    		
+				var genres_temp = (data.artists.items[i].genres.length == 0) ? ["none"] : data.artists.items[i].genres.slice(0,3);
+				var is_last_artist = (i == constants.num_artists - 1)? false : true; 
+
 	    		var artistInfo = { name: data.artists.items[i].name,
 	    				popularity: data.artists.items[i].popularity, 
 	    				num_followers: data.artists.items[i].followers.total,
 	    				spotify_link: data.artists.items[i].external_urls.spotify,
 	    				artist_image: data.artists.items[i].images[2].url,
-	    				genres: data.artists.items[i].genres
+	    				genres: genres_temp,
+	    				last_artist: is_last_artist
 				};	
 
 				var html = template(artistInfo);
@@ -127,4 +135,3 @@ function getSpotifyTopHundredTracks(){
 		console.error(err);
 	});
 }
-

@@ -4,30 +4,34 @@ $(document).ready(function(){
 
 	showMainSearch();
 
+	setInterval(function() {
+		updateWallpaper();
+	}, 6000);
+
+
 	toastr.options = {
 	  "closeButton": true,
 	  "debug": false,
-	  "newestOnTop": false,
+	  "newestOnTop": true,
 	  "progressBar": false,
 	  "positionClass": "toast-bottom-right",
-	  "preventDuplicates": true,
+	  "preventDuplicates": false,
 	  "onclick": null,
 	  "showDuration": "300",
-	  "hideDuration": "1000",
+	  "hideDuration": "500",
 	  "timeOut": "3000",
-	  "extendedTimeOut": "1000",
+	  "extendedTimeOut": "5jd00",
 	  "showEasing": "swing",
 	  "hideEasing": "linear",
 	  "showMethod": "fadeIn",
 	  "hideMethod": "fadeOut"
-	}	
-
+	}
 
 	$( "#navbar-search-button" ).click(function() {
 		if(checkSubmitNavbar()){
 			searchPetition("navbar-form");
 		}else {
-			toastr.warning('Insert any word');
+			toastr.info('Write any song, artist or album!','INFO');
 		}
 	});	
 
@@ -35,7 +39,7 @@ $(document).ready(function(){
 		if(checkSubmitMain()){
 			searchPetition("main-form");
 		}else {
-			toastr.warning('Insert any word');
+			toastr.info('Write any song, artist or album!','INFO');
 		}
 	});	
 
@@ -92,3 +96,18 @@ function checkSubmitMain() {
 }
 
 
+function updateWallpaper(){
+
+	var path_image = "wallpapers/" + String(Math.floor(Math.random() * 2) + 1) + ".jpg";
+ 	var oldImg = $("#wallpaper");  
+    var img = new Image();
+    img.src = path_image;
+    img.id = "wallpaper";
+    var newImg = $(img).hide();
+    $("#fadeContainer").append(img);  
+    oldImg.stop(true).fadeOut(3000, function() {
+        $(this).remove();
+    });
+    newImg.fadeIn(3000);
+
+}
