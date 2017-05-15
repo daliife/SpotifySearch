@@ -1,8 +1,18 @@
 //content_controller.js
+var TRANSITION_RATE = 1000;
 
 $(document).ready(function(){
 
-	showMainSearch();
+	
+	//Onloaded animation
+	$('#result-search').hide();
+	$('#navigation-bar').hide();	
+	$('#navigation-bar').fadeIn(TRANSITION_RATE);	
+	$('#navigation-bar').show();
+	$('#main-search').hide();	
+	$('#main-search').fadeIn(TRANSITION_RATE);	
+	$('#main-search').show();	
+
 
 	setInterval(function() {
 		updateWallpaper();
@@ -71,20 +81,24 @@ function searchPetition(formID){
 }
 
 function showResults(){
+	$('#main-search').fadeOut(TRANSITION_RATE);
 	$('#main-search').hide();
+	$('#result-search').fadeIn(TRANSITION_RATE);	
 	$('#result-search').show();	
 }
 
 function showMainSearch(){
-	$('#main-search').show();
-	$('#result-search').hide();	
+	$('#result-search').fadeOut(TRANSITION_RATE);
+	$('#result-search').hide();
+	$('#main-search').fadeIn(TRANSITION_RATE);	
+	$('#main-search').show();	
 }
 
 function clearResults(){
-	$('#songs-container').empty();
-	$('#albums-container').empty();
-	$('#artists-container').empty();
 	showMainSearch();
+	$('#songs-container').empty(TRANSITION_RATE);
+	$('#albums-container').empty(TRANSITION_RATE);
+	$('#artists-container').empty(TRANSITION_RATE);	
 }
 
 function checkSubmitNavbar() {
