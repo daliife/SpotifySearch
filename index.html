@@ -16,7 +16,7 @@
 
 	</head>
 	<body>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
+		<nav id="navigation-bar" class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
@@ -78,7 +78,7 @@
 							<h2 class="filler"></h2>
 						</div>
 						<div class="col-xs-4">
-							<a href="" onclick="clearResults();" class="btn btn-default clear-search-color pull-right add-margin" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Clear search</a>
+							<a href="#!" onclick="clearResults();" class="btn btn-default clear-search-color pull-right add-margin" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Clear search</a>
 						</div>
 					</div>
 					<div class="col-sm-12 col-md-4">
@@ -117,7 +117,7 @@
 		
 
 		<script id="song-template" type="text/x-handlebars-template">		
-			<div class="media">
+			<div id="show" class="media">
 				<div class="media-left">
 					<a href="{{audio_preview}}">
 						<img class="media-object rounded-borders" src="{{album_image}}" alt="{{album}}'s album image" width="64" height="64">
