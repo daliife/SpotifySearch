@@ -1,5 +1,5 @@
 //content_controller.js
-var TRANSITION_RATE = 1000;
+var TRANSITION_RATE = 1500;
 
 $(document).ready(function(){
 
