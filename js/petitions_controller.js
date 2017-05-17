@@ -71,6 +71,11 @@ function getAlbumsObject(petitionName){
 				var html = template(albumInfo);
 				$('#albums-container').append(html);	    	
 			}
+
+			var finalLoad ='<div class="col-xs-12"><div id="show" class="media"><div class="media-body"><a href="#"><h4 class="media-heading green-spotify">LOAD MORE ALBUMS</h4></a></div></div></div>'; 
+
+			$('#albums-container').append(finalLoad);			 
+
 		}else{
 			var html_error = '<div class="media"><div class="media-body"><h4 class="media-heading text-center"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> No albums found.</h4>	</div></div>';
 			$('#albums-container').append(html_error);

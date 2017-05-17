@@ -37,7 +37,6 @@ function updateFavoritedAlbums(transaction, results) {
         var row = results.rows.item(i);
         $("#albumsFavorited").tmpl(row).appendTo("#albumsListFavorited");
     }
-
 }
 
 //Actualitza els artistes favorits de l'usuari

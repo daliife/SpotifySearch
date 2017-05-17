@@ -1,11 +1,13 @@
 //content_controller.js
-var TRANSITION_RATE = 1500;
+var TRANSITION_RATE = 600;
+
+var idActualPage = 0;
 
 $(document).ready(function(){
-
 	
+	hideAllDivs();
+
 	//Onloaded animation
-	$('#result-search').hide();
 	$('#navigation-bar').hide();	
 	$('#navigation-bar').fadeIn(TRANSITION_RATE);	
 	$('#navigation-bar').show();
@@ -13,11 +15,9 @@ $(document).ready(function(){
 	$('#main-search').fadeIn(TRANSITION_RATE);	
 	$('#main-search').show();	
 
-
 	setInterval(function() {
 		updateWallpaper();
 	}, 6000);
-
 
 	toastr.options = {
 	  "closeButton": true,
@@ -69,36 +69,99 @@ $(document).ready(function(){
 
 });
 
+function hideAllDivs(){
+
+	$('#result-search').hide();
+	$('#navigation-bar').hide();
+	$('#trending').hide();
+	$('#recommendations').hide();
+	$('#favorites').hide();
+
+}
+
 function searchPetition(formID){
+
 	var petition = document.getElementById(formID).value;
 	$(".filler").html("<small>Results for:</small> " + petition);
-
 	getSongsObject(petition);
 	getAlbumsObject(petition);
 	getArtistsObject(petition);
+	togglePages(1);
 
-	showResults();
 }
 
-function showResults(){
-	$('#main-search').fadeOut(TRANSITION_RATE);
-	$('#main-search').hide();
-	$('#result-search').fadeIn(TRANSITION_RATE);	
-	$('#result-search').show();	
+function togglePages(id_forward_page){
+
+	if(idActualPage != id_forward_page){
+
+		switch(idActualPage){
+			case 0:
+				$('#main-search').fadeOut(TRANSITION_RATE, function() {
+	   				fadeInAnimation(id_forward_page);
+				});
+				break;
+			case 1:
+				$('#result-search').fadeOut(TRANSITION_RATE, function() {
+	   				fadeInAnimation(id_forward_page);
+				});
+				break;
+			case 2:
+				$('#trending').fadeOut(TRANSITION_RATE, function() {
+	   				fadeInAnimation(id_forward_page);
+				});
+				break;
+			case 3:
+				$('#recommendations').fadeOut(TRANSITION_RATE, function() {
+	   				fadeInAnimation(id_forward_page);
+				});
+				break;
+			case 4:
+				$('#favorites').fadeOut(TRANSITION_RATE, function() {
+	   				fadeInAnimation(id_forward_page);
+				});
+				break;
+			default:
+				break;
+		}
+
+		idActualPage = id_forward_page;
+
+	}
+
 }
 
-function showMainSearch(){
-	$('#result-search').fadeOut(TRANSITION_RATE);
-	$('#result-search').hide();
-	$('#main-search').fadeIn(TRANSITION_RATE);	
-	$('#main-search').show();	
+function fadeInAnimation(id_forward_page){
+
+	switch(id_forward_page){
+		case 0:
+			$('#main-search').fadeIn(TRANSITION_RATE);
+			break;
+		case 1:
+			$('#result-search').fadeIn(TRANSITION_RATE);
+			break;
+		case 2:
+			$('#trending').fadeIn(TRANSITION_RATE);
+			break;
+		case 3:
+			$('#recommendations').fadeIn(TRANSITION_RATE);
+			break;
+		case 4:
+			$('#favorites').fadeIn(TRANSITION_RATE);
+			break;
+		default:
+			break;
+	}
+
 }
 
 function clearResults(){
-	showMainSearch();
-	$('#songs-container').empty(TRANSITION_RATE);
-	$('#albums-container').empty(TRANSITION_RATE);
-	$('#artists-container').empty(TRANSITION_RATE);	
+	togglePages(0);
+	setTimeout(function() {
+		$('#songs-container').empty(TRANSITION_RATE);
+		$('#albums-container').empty(TRANSITION_RATE);
+		$('#artists-container').empty(TRANSITION_RATE);	
+		console.log("CLEArED");
+	}, TRANSITION_RATE);
 }
 
 function checkSubmitNavbar() {
@@ -108,7 +171,6 @@ function checkSubmitNavbar() {
 function checkSubmitMain() {
     return !(document.getElementById("main-form").value == "")
 }
-
 
 function updateWallpaper(){
 

@@ -26,8 +26,8 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html"><img alt="Brand" src="spotify_icon.png" height="20" width="20"></a>
-					<a class="navbar-brand green-spotify" href="index.html">Spotify Search</a>
+					<a class="navbar-brand" onclick="togglePages(0)"><img alt="Brand" src="spotify_icon.png" height="20" width="20"></a>
+					<a class="navbar-brand green-spotify" onclick="togglePages(0)">Spotify Search</a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -38,9 +38,9 @@
 						<button type="button" id="navbar-search-button" class="btn green-spotify-background"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#" class="green-spotify"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Trending</a></li>
-						<li><a href="#" class="green-spotify"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Recommendations</a></li>
-						<li><a href="#" class="green-spotify"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Favorites</a></li>
+						<li><a onclick="togglePages(2);" class="green-spotify"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Trending</a></li>
+						<li><a onclick="togglePages(3);" class="green-spotify"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Recommendations</a></li>
+						<li><a onclick="togglePages(4);" class="green-spotify"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Favorites</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -112,9 +112,100 @@
 					</div>
 				</div>
 			</div>
+
+			<div id="trending" class="container-fluid">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>Trending</h3>
+							</div>
+							<div id="trending-container" class="panel-body">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="recommendations" class="container-fluid">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Recomended for you</h3>
+							</div>
+							<div id="trending-container" class="panel-body">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="favorites" class="container-fluid">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Favorites</h3>
+							</div>
+							<div id="trending-container" class="panel-body">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<!-- /#main-wrapper -->
 		
+		<div class="panel panel-default">
+  
+ 			<div class="panel-body">
+
+					<div id="lineTop" class="col-md-12 col-xs-12 col-sm-12">
+							<input class="bar" type="range" id="progress" value="0" onchange="setTiming(value);"/>
+					</div>
+
+					<div class="col-md-4 col-xs-12 col-sm-8">
+							<img id="imagePlayingSong" src="images/logo_provisional.png" class="navbar-brand img-responsive" alt="Playing song image"></img>
+							<h4 id="namePlayingSong"> </h4>
+							<p id="albumPlayingSong"> </p>
+					</div>
+
+
+					<div class="col-md-4 col-xs-12 col-sm-8">
+
+	                    <button id="rewindButton" type="button" class="btn col-md-3 col-xs-3 col-sm-3">
+	                       <i class="material-icons">fast_rewind</i>
+	                    </button>
+
+						<button id="playButton" type="button" class="btn col-md-3 col-xs-3 col-sm-3">          
+	                        <i id="iconPlayPause" class="material-icons">play_arrow</i>
+	                    </button>
+	                
+	                    <button id="forwardButton" type="button" class="btn col-md-3 col-xs-3 col-sm-3">
+	                       <i class="material-icons">fast_forward</i>
+	                    </button>
+	                
+					</div>
+
+
+					<div class="col-md-4 col-xs-12 col-sm-8">
+						
+						<div id="volumeMin" class="btn col-md-2 col-xs-2 col-sm-2">
+							<i  id="volume" class="material-icons">volume_mute</i>
+						</div>
+						
+						<div class="btn col-md-7 col-xs-7 col-sm-7">
+							<input class="bar" type="range" id="volumeSlider" value="50" onchange="setVolume(value)"/>
+						</div>z
+						
+						<div id="volumeMax" class="btn col-md-2 col-xs-2 col-sm-2">
+							<i id="volume" class="material-icons">volume_up</i>
+						</div>
+					</div>
+				</div>
+			</div>
+
 
 		<script id="song-template" type="text/x-handlebars-template">		
 			<div id="show" class="media">
@@ -137,6 +228,15 @@
 			{{#if last_song}}
 				<div class="divider-manual"></div>
 			{{/if}}
+			{{#unless last_song}}
+			<div id="show" class="media">
+				<div class="media-body">				
+					<a href="#">
+						<h4 class="media-heading green-spotify">LOAD MORE SONGS</h4>
+					</a>
+				</div>
+			</div>
+			{{/unless}}
 		</script>		
 
 		<script id="albums-template" type="text/x-handlebars-template">
@@ -148,6 +248,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</script>
 
 		<script id="artists-template" type="text/x-handlebars-template">
@@ -170,6 +271,15 @@
 			{{#if last_artist}}
 				<div class="divider-manual"></div>
 			{{/if}}
+			{{#unless last_artist}}
+			<div id="show" class="media">
+				<div class="media-body">				
+					<a href="#">
+						<h4 class="media-heading green-spotify">LOAD MORE ARTISTS</h4>
+					</a>
+				</div>
+			</div>
+			{{/unless}}
 		</script>		
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

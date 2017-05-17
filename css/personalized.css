@@ -13,6 +13,10 @@ p{
 	color: white;
 }
 
+.badge{
+	margin: 5px!important;
+}
+
 #wallpaper{
 	position: absolute;
 	width: 100%;
@@ -96,7 +100,7 @@ p{
   border-radius: 5px;
 }
 
-#result-search{
+#result-search, #trending, #recommendations, #favorites{
   padding-top: 70px!important;
 }
 
