@@ -1,11 +1,6 @@
 // buttonscontroler.js
 var showingMiniplayer = false;
 
-function updatePlayerInfo(urlImage, nameSong, nameAlbum, nameArtist){
-    document.getElementById("imagePlayingSong").src = urlImage;
-    document.getElementById("namePlayingSong").innerHTML = nameSong;
-    document.getElementById("albumPlayingSong").innerHTML = nameAlbum + " || " + nameArtist;     
-}
 
 function callSnackBarPause(){
     document.getElementById("snackButton").setAttribute('data-content',"Paused");
@@ -17,12 +12,6 @@ function callSnackBar(nameSong, nameAlbum){
         $("#snackButton").snackbar("toggle");  
 }
 
-function callMiniPlayerEffect(){
-    if (!showingMiniplayer) {
-        $( "#miniplayer" ).show( 'slide', { direction: "down" } , 500);
-    };
-}
-
 function checkSubmit() {
     if ( document.getElementById("addon2").value == "" ){
         return 0;
@@ -31,42 +20,12 @@ function checkSubmit() {
     }
 }
 
-function changeIconPlay(play_flag){
-    if(play_flag){
-        document.getElementById("iconPlayPause").innerHTML = "pause";
-    }else{
-        document.getElementById("iconPlayPause").innerHTML = "play_arrow";
-        //callSnackBarPause();
-    }
-}
-
 //Reprodueix la canço corresponent i actualitza la info del miniplayer
-function playSong(url, urlImage, nameSong, nameAlbum, id, nameArtist,IDArtist){
+function playSong(url, urlImage, nameSong, nameAlbum, id, nameArtist, IDArtist){
     updatePlayerInfo(urlImage, nameSong, nameAlbum, nameArtist);
-    //callSnackBar(nameSong,nameAlbum);
-    callMiniPlayerEffect();
+    toggleMiniplayer();
     addPlayer(url);
     addItemSongsPlayed(id,nameArtist,nameSong,nameAlbum,1,IDArtist);       
-}
-
-function popModalArtist(nameArtist, popularity){
-
-    $.ajax({
-        url:"http://developer.echonest.com/api/v4/artist/biographies?api_key=KLQS7H9RMIF0J7KNS&name=" + nameArtist + "&format=json&results=1&start=0&license=cc-by-sa",
-        type:"GET",
-        dataType:"json",
-        success:function(json){
-            document.getElementById("artistName").innerHTML = "Information about " + nameArtist;
-            document.getElementById("popularityArtist").innerHTML = popularity;
-            document.getElementById("biographyArtist").innerHTML = json.response.biographies[0].text;
-            $("#modalArtist").modal();
-            
-        },error: function(){
-            console.log("error: Cannot get trendingSongs");
-            $("#descriptionArtist").innerHTML = "No biography avaiable...";
-            $("#popularityArtist").innerHTML = "No popularity avaiable...";
-        }
-    });
 }
 
 function show(){

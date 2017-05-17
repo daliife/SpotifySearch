@@ -1,6 +1,5 @@
 //content_controller.js
 var TRANSITION_RATE = 600;
-
 var idActualPage = 0;
 
 $(document).ready(function(){
@@ -65,7 +64,12 @@ $(document).ready(function(){
     		event.preventDefault();
     		searchPetition("navbar-form");
 		}    		
-	});			
+	});
+
+   $(document).scroll(function () {
+    	var $nav = $("#navigation-bar");
+    	$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+  	});
 
 });
 
@@ -160,7 +164,6 @@ function clearResults(){
 		$('#songs-container').empty(TRANSITION_RATE);
 		$('#albums-container').empty(TRANSITION_RATE);
 		$('#artists-container').empty(TRANSITION_RATE);	
-		console.log("CLEArED");
 	}, TRANSITION_RATE);
 }
 

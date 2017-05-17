@@ -11,8 +11,8 @@
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/personalized.css" rel="stylesheet">
-
 		<link href="css/toastr.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
 	</head>
 	<body>
@@ -38,9 +38,9 @@
 						<button type="button" id="navbar-search-button" class="btn green-spotify-background"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
 					</form>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a onclick="togglePages(2);" class="green-spotify"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Trending</a></li>
-						<li><a onclick="togglePages(3);" class="green-spotify"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Recommendations</a></li>
-						<li><a onclick="togglePages(4);" class="green-spotify"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Favorites</a></li>
+						<li><a href="javascript:void(0)" onclick="togglePages(2);" class="green-spotify"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Trending</a></li>
+						<li><a href="javascript:void(0)" onclick="togglePages(3);" class="green-spotify"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Recommendations</a></li>
+						<li><a href="javascript:void(0)" onclick="togglePages(4);" class="green-spotify"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Favorites</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -157,54 +157,25 @@
 		</div>
 		<!-- /#main-wrapper -->
 		
-		<div class="panel panel-default">
-  
- 			<div class="panel-body">
+		<div id="miniplayer" class="panel panel-default col-sm-4">
 
-					<div id="lineTop" class="col-md-12 col-xs-12 col-sm-12">
-							<input class="bar" type="range" id="progress" value="0" onchange="setTiming(value);"/>
-					</div>
-
-					<div class="col-md-4 col-xs-12 col-sm-8">
-							<img id="imagePlayingSong" src="images/logo_provisional.png" class="navbar-brand img-responsive" alt="Playing song image"></img>
-							<h4 id="namePlayingSong"> </h4>
-							<p id="albumPlayingSong"> </p>
-					</div>
-
-
-					<div class="col-md-4 col-xs-12 col-sm-8">
-
-	                    <button id="rewindButton" type="button" class="btn col-md-3 col-xs-3 col-sm-3">
-	                       <i class="material-icons">fast_rewind</i>
-	                    </button>
-
-						<button id="playButton" type="button" class="btn col-md-3 col-xs-3 col-sm-3">          
-	                        <i id="iconPlayPause" class="material-icons">play_arrow</i>
-	                    </button>
-	                
-	                    <button id="forwardButton" type="button" class="btn col-md-3 col-xs-3 col-sm-3">
-	                       <i class="material-icons">fast_forward</i>
-	                    </button>
-	                
-					</div>
-
-
-					<div class="col-md-4 col-xs-12 col-sm-8">
-						
-						<div id="volumeMin" class="btn col-md-2 col-xs-2 col-sm-2">
-							<i  id="volume" class="material-icons">volume_mute</i>
-						</div>
-						
-						<div class="btn col-md-7 col-xs-7 col-sm-7">
-							<input class="bar" type="range" id="volumeSlider" value="50" onchange="setVolume(value)"/>
-						</div>z
-						
-						<div id="volumeMax" class="btn col-md-2 col-xs-2 col-sm-2">
-							<i id="volume" class="material-icons">volume_up</i>
-						</div>
-					</div>
+ 			<div class="panel-body row">
+		
+				<div class="col-sm-12">
+					<img id="imagePlayingSong" src="test.png" class="img-responsive" alt="Playing song image"></img>
+					<h4 id="namePlayingSong" class="add-padding-left">NAME PLAYING </h4>
+					<p id="albumPlayingSong" class="add-padding-left">ALBUM PLAYING</p>
 				</div>
+
+				<div class="col-xs-12 add-padding-top">
+ 					<input id="progress" class="col-xs-12" type="range" id="progress" value="0" onchange="setTiming(value);"/>
+ 					<p id="start-time" class="col-xs-6 timings">00:00</p>
+ 					<p id="end-time" class="col-xs-6 timings center-right">00:00</p>
+				</div>
+
 			</div>
+			
+		</div>
 
 
 		<script id="song-template" type="text/x-handlebars-template">		

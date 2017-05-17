@@ -218,7 +218,3 @@ function NoScope2(transaction, results){
         checkPlayedDatabase(true);
     }
 }
-
-
-
-
