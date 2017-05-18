@@ -47,7 +47,7 @@ function updateSource(url){
     song.src = url;
     song.load();
     song.addEventListener("timeupdate", progress, false);
-    song.volume = 0.0;
+    song.volume = 1.0;
 
 }
 

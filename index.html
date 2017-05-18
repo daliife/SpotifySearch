@@ -189,10 +189,8 @@
 					<h4 class="media-heading">{{song}}</h4>
 					<p><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> {{album}} <br><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{artist}}</p>
 				</div>
-				<div class="media-left">
-					<a class="btn btn-default btn-block" href="javascript:void(0);" role="button" onclick="playSong('{{audio_preview}}','{{album_image}}','{{song}}','{{album}}','{{song}}','{{artist}}','{{song}}');"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play</a>
-					<a class="btn btn-default btn-block" href="#" role="button"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Fav</a>
-					</a>
+				<div class="media-left buttons-actions">
+					<a class="play-button btn btn-default btn-block" href="javascript:void(0);" role="button" onclick="playSong('{{audio_preview}}','{{album_image}}','{{song}}','{{album}}','{{song}}','{{artist}}','{{song}}');"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play</a>
 				</div>
 			</div>
 			{{#if last_song}}
@@ -202,7 +200,7 @@
 			<div id="show" class="media">
 				<div class="media-body">				
 					<a href="#">
-						<h4 class="media-heading green-spotify">LOAD MORE SONGS</h4>
+						<h4 id="load-more" class="media-heading green-spotify">LOAD MORE SONGS</h4>
 					</a>
 				</div>
 			</div>
@@ -245,7 +243,7 @@
 			<div id="show" class="media">
 				<div class="media-body">				
 					<a href="#">
-						<h4 class="media-heading green-spotify">LOAD MORE ARTISTS</h4>
+						<h4 id="load-more" class="media-heading green-spotify">LOAD MORE ARTISTS</h4>
 					</a>
 				</div>
 			</div>
