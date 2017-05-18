@@ -6,7 +6,8 @@ song.setAttribute("id","audio");
 function progress() {
 	
 	//Update slider
-	document.getElementById("progress").value = ((song.currentTime/song.duration)*100);
+	document.getElementById("progress").value = ((song.currentTime/song.duration)*1000);
+	console.log((song.currentTime/song.duration)*1000)
 	//Update time of miniplayer
 	var date = new Date(null);
 	date.setSeconds(song.currentTime); // specify value for SECONDS here
@@ -46,7 +47,7 @@ function updateSource(url){
     song.src = url;
     song.load();
     song.addEventListener("timeupdate", progress, false);
-    song.volume = 0.1;
+    song.volume = 0.0;
 
 }
 

@@ -90,10 +90,14 @@ function searchPetition(formID){
 
 	var petition = document.getElementById(formID).value;
 	$(".filler").html("<small>Results for:</small> " + petition);
-	getSongsObject(petition);
-	getAlbumsObject(petition);
-	getArtistsObject(petition);
+	
 	togglePages(1);
+
+	setTimeout(function() {
+		getSongsObject(petition);
+		getAlbumsObject(petition);
+		getArtistsObject(petition);
+	}, TRANSITION_RATE);
 
 }
 
@@ -135,6 +139,15 @@ function togglePages(id_forward_page){
 
 	}
 
+	if(idActualPage == 1 && id_forward_page == 1){
+		$('#song-results').fadeOut(TRANSITION_RATE);
+		$('#album-results').fadeOut(TRANSITION_RATE);
+		$('#artist-results').fadeOut(TRANSITION_RATE, function() {
+			fadeInAnimation(5); //Special case
+		});	
+	}
+
+
 }
 
 function fadeInAnimation(id_forward_page){
@@ -154,6 +167,11 @@ function fadeInAnimation(id_forward_page){
 			break;
 		case 4:
 			$('#favorites').fadeIn(TRANSITION_RATE);
+			break;
+		case 5:
+			$('#song-results').fadeIn(TRANSITION_RATE);
+			$('#album-results').fadeIn(TRANSITION_RATE);
+			$('#artist-results').fadeIn(TRANSITION_RATE);
 			break;
 		default:
 			break;

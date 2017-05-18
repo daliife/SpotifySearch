@@ -78,10 +78,10 @@
 							<h2 class="filler"></h2>
 						</div>
 						<div class="col-xs-4">
-							<a href="#!" onclick="clearResults();" class="btn btn-default clear-search-color pull-right add-margin" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Clear search</a>
+							<a href="javascript:void(0);" onclick="clearResults();" class="btn btn-default clear-search-color pull-right add-margin" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Clear search</a>
 						</div>
 					</div>
-					<div class="col-sm-12 col-md-4">
+					<div id="song-results" class="col-sm-12 col-md-4">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Songs</h3>
@@ -90,7 +90,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-12 col-md-8">
+					<div id="album-results" class="col-sm-12 col-md-8">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Albums</h3>
@@ -101,7 +101,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-12 col-md-8">
+					<div id="artist-results"class="col-sm-12 col-md-8">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Artists</h3>
@@ -168,7 +168,7 @@
 				</div>
 
 				<div class="col-xs-12 add-padding-top">
- 					<input id="progress" class="col-xs-12" type="range" id="progress" value="0" onchange="setTiming(value);"/>
+ 					<input id="progress" class="col-xs-12" type="range" id="progress" min="10" max="1000" step="10" onchange="setTiming(value);"/>
  					<p id="start-time" class="col-xs-6 timings">00:00</p>
  					<p id="end-time" class="col-xs-6 timings center-right">00:00</p>
 				</div>
