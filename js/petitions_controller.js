@@ -6,8 +6,8 @@ var spotifyApi = new SpotifyWebApi();
 //Results of search parameters
 var constants = Object.freeze({
     num_songs: 6,
-    num_albums: 6,
-    num_artists: 3
+    num_albums: 12,
+    num_artists: 2
 });
 
 //TODO: Control undefined/error variables of data
@@ -72,7 +72,7 @@ function getAlbumsObject(petitionName){
 				$('#albums-container').append(html);	    	
 			}
 
-			var finalLoad ='<div class="col-xs-12"><div id="show" class="media"><div class="media-body"><a href="#"><h4 class="media-heading green-spotify">LOAD MORE ALBUMS</h4></a></div></div></div>'; 
+			var finalLoad ='<div class="col-xs-12"><div id="show" class="media"><div class="media-body"><a href="#"><h4 id="load-more" class="media-heading green-spotify">LOAD MORE ALBUMS</h4></a></div></div></div>'; 
 
 			$('#albums-container').append(finalLoad);			 
 
@@ -131,7 +131,6 @@ function getArtistsObject(petitionName){
 	});
 }
 
-
 //TODO: Look for alternatives...
 function getSpotifyTopHundredTracks(){
 
@@ -142,4 +141,5 @@ function getSpotifyTopHundredTracks(){
 	}, function(err) {
 		console.error(err);
 	});
+
 }

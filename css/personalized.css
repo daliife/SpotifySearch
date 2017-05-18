@@ -6,6 +6,80 @@ p{
   line-height: 25px!important;
 }
 
+html{
+  height: 100%;
+}
+
+#miniplayer{
+  position: fixed;
+  bottom: 1%;
+  right: 0%;
+  border-top-right-radius: 0px!important;
+  border-bottom-right-radius: 0px!important;
+  background-color: rgba(130, 185, 1, 0.95)!important;
+  color: white;
+}
+
+.buttons-actions{
+	vertical-align: middle!important;
+}
+
+#main-wrapper{
+  position: relative!important;
+  height: 100%!important;
+  max-height: 100%!important;
+}
+
+.panel-body{
+  padding: 15px 15px 0px 15px!important;
+}
+
+.play-button, .play-button:focus{
+	border-color: rgba(130, 185, 1, 1)!important;
+	color: rgba(130, 185, 1, 1)!important;
+	background-color: transparent!important;
+}
+
+.play-button:hover{
+	background-color: rgba(130, 185, 1, 1)!important;
+	color: white!important;
+}
+
+#imagePlayingSong{
+  float: left;
+  width: 19%;
+  height: auto;
+  margin: 5px 15px 5px 5px;
+  border-radius: 50%;
+}
+
+#namePlayingSong{
+  font-size: 26px!important;
+}
+
+#albumPlayingSong{
+  font-size: 16px!important;
+}
+
+#start-time,#end-time{
+	font-weight: bold;
+	font-size: 15px;
+}
+
+#start-time{
+	padding-left: 15px!important;
+}
+
+#end-time{
+	padding-right: 15px!important;
+}
+
+.timings{
+  padding-left: 0px!important;
+  padding-right: 0px!important;
+  padding-top: 10px;
+}
+
 .panel-title{
 	font-size: 24px;
 	font-weight: bold;
@@ -13,18 +87,36 @@ p{
 	color: white;
 }
 
+.center-right{
+  text-align: right;
+}
+
 .badge{
 	margin: 5px!important;
 }
 
-#wallpaper{
-	position: absolute;
+.add-padding-top{
+  padding-top: 15px;
+}
+
+.add-padding-left{
+  padding-left: 15px;
+}
+
+#wallpaper{	
 	width: 100%;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    background-size: cover;
-    opacity: 0.2;
+	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
+	background-size: cover;
+	opacity: 0.2;
+	position: fixed;
+}
+
+#load-more{
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .form-control{
@@ -106,6 +198,11 @@ p{
 
 .progress{
   margin-bottom: 0px!important;
+
+}
+
+#progress{
+	background-color: transparent!important;
 }
 
 .jumbotron {
@@ -167,4 +264,94 @@ p{
             -ms-flex-pack : center;
   -webkit-justify-content : center;
           justify-content : center;
+}
+
+#navigation-bar.scrolled {
+  background-color: rgba(0,0,0,0.8)!important;
+  transition: background-color 200ms linear;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 0px 0;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #ffffff;
+  border-radius: 15px;
+  border: 0px solid rgba(130, 185, 1, 0);
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+  border: 2px solid #ffffff;
+  height: 20px;
+  width: 20px;
+  border-radius: 25px;
+  background: #82b901;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: 0px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #ffffff;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #ffffff;
+  border-radius: 15px;
+  border: 0px solid rgba(130, 185, 1, 0);
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+  border: 2px solid #ffffff;
+  height: 20px;
+  width: 20px;
+  border-radius: 25px;
+  background: #82b901;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #ffffff;
+  border: 0px solid rgba(130, 185, 1, 0);
+  border-radius: 30px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background: #ffffff;
+  border: 0px solid rgba(130, 185, 1, 0);
+  border-radius: 30px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+  border: 2px solid #ffffff;
+  width: 20px;
+  border-radius: 25px;
+  background: #82b901;
+  cursor: pointer;
+  height: 20px;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #ffffff;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #ffffff;
 }
