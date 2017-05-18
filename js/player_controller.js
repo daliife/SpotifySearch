@@ -7,7 +7,7 @@ function progress() {
 	
 	//Update slider
 	document.getElementById("progress").value = ((song.currentTime/song.duration)*1000);
-	console.log((song.currentTime/song.duration)*1000)
+	
 	//Update time of miniplayer
 	var date = new Date(null);
 	date.setSeconds(song.currentTime); // specify value for SECONDS here
@@ -71,5 +71,9 @@ function playSong(url, urlImage, nameSong, nameAlbum, id, nameArtist, IDArtist){
 function updatePlayerInfo(urlImage, nameSong, nameAlbum, nameArtist){
     document.getElementById("imagePlayingSong").src = urlImage;
     document.getElementById("namePlayingSong").innerHTML = nameSong;
-    document.getElementById("albumPlayingSong").innerHTML = nameAlbum + " | " + nameArtist;     
+    var htmlAlbumIcon = '<span class="glyphicon glyphicon-cd" aria-hidden="true"></span> ';
+    var htmlArtistIcon = '<span class="glyphicon glyphicon-user" aria-hidden="true"></span> ';
+    document.getElementById("albumPlayingSong").innerHTML = htmlAlbumIcon + nameAlbum;     
+    document.getElementById("artistPlayingSong").innerHTML = htmlArtistIcon + nameArtist;     
 }
+

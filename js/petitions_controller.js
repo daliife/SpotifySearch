@@ -5,9 +5,9 @@ var spotifyApi = new SpotifyWebApi();
 
 //Results of search parameters
 var constants = Object.freeze({
-    num_songs: 8,
-    num_albums: 6,
-    num_artists: 3
+    num_songs: 6,
+    num_albums: 12,
+    num_artists: 2
 });
 
 //TODO: Control undefined/error variables of data

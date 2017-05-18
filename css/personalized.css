@@ -16,7 +16,7 @@ html{
   right: 0%;
   border-top-right-radius: 0px!important;
   border-bottom-right-radius: 0px!important;
-  background-color: rgba(130, 185, 1, 0.75)!important;
+  background-color: rgba(130, 185, 1, 0.95)!important;
   color: white;
 }
 
@@ -34,20 +34,20 @@ html{
   padding: 15px 15px 0px 15px!important;
 }
 
-.play-button{
+.play-button, .play-button:focus{
 	border-color: rgba(130, 185, 1, 1)!important;
 	color: rgba(130, 185, 1, 1)!important;
+	background-color: transparent!important;
 }
 
 .play-button:hover{
 	background-color: rgba(130, 185, 1, 1)!important;
-	
 	color: white!important;
 }
 
 #imagePlayingSong{
   float: left;
-  width: 15%;
+  width: 19%;
   height: auto;
   margin: 5px 15px 5px 5px;
   border-radius: 50%;
