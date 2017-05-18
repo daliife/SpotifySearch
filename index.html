@@ -190,8 +190,7 @@
 					<p><span class="glyphicon glyphicon-cd" aria-hidden="true"></span> {{album}} <br><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{artist}}</p>
 				</div>
 				<div class="media-left">
-					<a href="#">
-					<a class="btn btn-default btn-block" href="{{audio_preview}}" role="button"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play</a>
+					<a class="btn btn-default btn-block" href="javascript:void(0);" role="button" onclick="playSong('{{audio_preview}}','{{album_image}}','{{song}}','{{album}}','{{song}}','{{artist}}','{{song}}');"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play</a>
 					<a class="btn btn-default btn-block" href="#" role="button"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Fav</a>
 					</a>
 				</div>
@@ -268,6 +267,7 @@
 		<script type="text/javascript" src="js/spotify-web-api-js.js"></script>
 		<script type="text/javascript" src="js/petitions_controller.js"></script>
 		<script type="text/javascript" src="js/content_controller.js"></script>
+		<script type="text/javascript" src="js/player_controller.js"></script>
 
 	</body>
 </html>

@@ -6,6 +6,9 @@ $(document).ready(function(){
 	
 	hideAllDivs();
 
+	//Hide miniplayer on load page
+	$("#miniplayer").toggleClass('animated slideOutRight');
+
 	//Onloaded animation
 	$('#navigation-bar').hide();	
 	$('#navigation-bar').fadeIn(TRANSITION_RATE);	

@@ -131,7 +131,6 @@ function getArtistsObject(petitionName){
 	});
 }
 
-
 //TODO: Look for alternatives...
 function getSpotifyTopHundredTracks(){
 
@@ -142,4 +141,5 @@ function getSpotifyTopHundredTracks(){
 	}, function(err) {
 		console.error(err);
 	});
+
 }

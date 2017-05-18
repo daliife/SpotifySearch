@@ -46,6 +46,11 @@ html{
   font-size: 16px!important;
 }
 
+#start-time,#end-time{
+	font-weight: bold;
+	font-size: 15px;
+}
+
 .timings{
   padding-left: 0px!important;
   padding-right: 0px!important;
