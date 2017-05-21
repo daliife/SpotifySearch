@@ -65,7 +65,6 @@ function playSong(url, urlImage, nameSong, nameAlbum, id, nameArtist, IDArtist){
     updatePlayerInfo(urlImage, nameSong, nameAlbum, nameArtist);
     if(!isPlaying) toggleMiniplayer();
     addPlayer(url);
-    //TODO: addItemSongsPlayed(id,nameArtist,nameSong,nameAlbum,1,IDArtist);       
 }
 
 function updatePlayerInfo(urlImage, nameSong, nameAlbum, nameArtist){
@@ -76,4 +75,3 @@ function updatePlayerInfo(urlImage, nameSong, nameAlbum, nameArtist){
     document.getElementById("albumPlayingSong").innerHTML = htmlAlbumIcon + nameAlbum;     
     document.getElementById("artistPlayingSong").innerHTML = htmlArtistIcon + nameArtist;     
 }
-
