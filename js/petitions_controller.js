@@ -6,9 +6,14 @@ var spotifyApi = new SpotifyWebApi();
 //Results of search parameters
 var constants = Object.freeze({
     num_songs: 6,
-    num_albums: 12,
-    num_artists: 2
+    num_albums: 6,
+    num_artists: 3
 });
+
+var curr_num_songs = constants.num_songs;
+var curr_num_albums = constants.num_albums;
+var curr_num_artists = constants.num_artists;
+var curr_petition_name;
 
 //TODO: Control undefined/error variables of data
 function getSongsObject(petitionName){	
@@ -16,13 +21,16 @@ function getSongsObject(petitionName){
 	var source = $("#song-template").html();
 	var template = Handlebars.compile(source);
 
+	curr_petition_name = petitionName;
+
+
 	$('#songs-container').empty();
 
-	spotifyApi.searchTracks(petitionName, {limit: constants.num_songs}).then(function(data) {    
+	spotifyApi.searchTracks(petitionName, {limit: curr_num_songs}).then(function(data) {    
 
 		if (data.tracks.total > 0) {
 			
-		    for (var i = 0; i < constants.num_songs; i++) {
+		    for (var i = 0; i < curr_num_songs; i++) {
 
 		    	var is_not_last_song = (i == data.tracks.items.length - 1)? false : true; 
 
@@ -37,7 +45,9 @@ function getSongsObject(petitionName){
 				var html = template(songInfo);
 				$('#songs-container').append(html);	
 
-		    }	
+		    }
+
+		    curr_num_songs += constants.num_songs;	
 
 		}else{
 
@@ -58,11 +68,11 @@ function getAlbumsObject(petitionName){
 
 	$('#albums-container').empty();
 	
-	spotifyApi.searchAlbums(petitionName, {limit: constants.num_albums}).then(function(data) {        
+	spotifyApi.searchAlbums(petitionName, {limit: curr_num_albums}).then(function(data) {        
 		
 		if (data.albums.total > 0) {
 
-		    for (var i = 0; i < constants.num_albums; i++) {
+		    for (var i = 0; i < curr_num_albums; i++) {
 		    	var albumInfo = { album_image: data.albums.items[i].images[1].url,
 		    				name: data.albums.items[i].name, 
 		    				spotify_link: data.albums.items[i].external_urls.spotify
@@ -72,9 +82,11 @@ function getAlbumsObject(petitionName){
 				$('#albums-container').append(html);	    	
 			}
 
-			var finalLoad ='<div class="col-xs-12"><div id="show" class="media"><div class="media-body"><a href="#"><h4 id="load-more" class="media-heading green-spotify">LOAD MORE ALBUMS</h4></a></div></div></div>'; 
+			var finalLoad ='<div class="col-xs-12"><div id="show" class="media"><div class="media-body"><a href="javascript:void(0);" onclick="toggleLoadMore(1);"><h4 id="load-more" class="media-heading green-spotify">LOAD MORE ALBUMS</h4></a></div></div></div>'; 
 
-			$('#albums-container').append(finalLoad);			 
+			$('#albums-container').append(finalLoad);
+
+			curr_num_albums += constants.num_albums;			 
 
 		}else{
 			var html_error = '<div class="media"><div class="media-body"><h4 class="media-heading text-center"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> No albums found.</h4>	</div></div>';
@@ -94,14 +106,14 @@ function getArtistsObject(petitionName){
 
 	$('#artists-container').empty();
 
-	spotifyApi.searchArtists(petitionName, {limit: constants.num_artists}).then(function(data) {    
+	spotifyApi.searchArtists(petitionName, {limit: curr_num_artists}).then(function(data) {    
 
 		if (data.artists.total > 0) {
 
-		    for (var i = 0; i < constants.num_artists; i++) {
+		    for (var i = 0; i < curr_num_artists; i++) {
 	   			
 				var genres_temp;
-				if(data.artists.items[i].genres.length == 0){
+				if(data.artists.items[i].genres.length == undefined){
 					genres_temp = ["none"];
 				}else{
 					genres_temp = data.artists.items[i].genres.slice(0,3);
@@ -119,6 +131,9 @@ function getArtistsObject(petitionName){
 	
 				var html = template(artistInfo);
 				$('#artists-container').append(html);
+
+				curr_num_artists += constants.num_artists;
+
 		    }
 
 		}else{
@@ -131,11 +146,11 @@ function getArtistsObject(petitionName){
 	});
 }
 
-//TODO: Look for alternatives...
+//TODO: Implement some day trending, reccomendations and favorites.
 function getSpotifyTopHundredTracks(){
 
-	spotifyApi.searchPlaylists('Top 100 tracks currently on Spotify', {limit:2}).then(function(data) {    
-	
+	spotifyApi.searchPlaylists('Top 100 tracks currently on Spotify', {limit:10}).then(function(data) {    
+
 	console.log(data);
 
 	}, function(err) {

@@ -179,6 +179,34 @@ function fadeInAnimation(id_forward_page){
 
 }
 
+function toggleLoadMore(type){
+	
+	switch(type){
+		case 0:
+			$('#song-results').fadeOut(TRANSITION_RATE, function() {
+				getSongsObject(curr_petition_name);
+				$('#song-results').fadeIn(TRANSITION_RATE);
+			});
+			break;
+		case 1:
+			
+			$('#album-results').fadeOut(TRANSITION_RATE, function() {
+				getAlbumsObject(curr_petition_name);
+				$('#album-results').fadeIn(TRANSITION_RATE);
+			});
+			break;
+		case 2:
+			$('#artist-results').fadeOut(TRANSITION_RATE, function() {
+				getArtistsObject(curr_petition_name);
+				$('#artist-results').fadeIn(TRANSITION_RATE);
+			});
+			break;
+		default:
+			break;
+	}
+
+}
+
 function clearResults(){
 	togglePages(0);
 	setTimeout(function() {
