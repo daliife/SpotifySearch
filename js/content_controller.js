@@ -226,7 +226,7 @@ function checkSubmitMain() {
 
 function updateWallpaper(){
 
-	var path_image = "wallpapers/" + String(Math.floor(Math.random() * 2) + 1) + ".jpg";
+	var path_image = "wallpapers/" + String(Math.floor(Math.random() * 5) + 1) + ".jpg";
  	var oldImg = $("#wallpaper");  
     var img = new Image();
     img.src = path_image;
